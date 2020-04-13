@@ -28,6 +28,6 @@ local pkg_widget = wibox.widget {
 
 icon_widget.icon:set_image(icon_path.. "pkg.png")
 
-vicious.register(text_widget.text, vicious.widgets.pkg, "$1", 2309, "Arch")
+vicious.register(text_widget.text, vicious.widgets.pkg, "$1", 2309, "Custom")
 
 return pkg_widget
