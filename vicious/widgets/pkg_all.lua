@@ -37,7 +37,8 @@ local PKGMGR = {
     ["Ubuntu"] = { cmd = "apt list --upgradable", sub = 1 },
     ["Fedora"] = { cmd = "dnf check-update", sub = 2 },
     ["FreeBSD"] = { cmd = "pkg version -I -l '<'" },
-    ["Mandriva"] = { cmd = "urpmq --auto-select" }
+    ["Mandriva"] = { cmd = "urpmq --auto-select" },
+    ["Custom"] = { cmd = "yay -Syy > /dev/null; yay -Qu", sub = 0 }
 }
 
 -- {{{ Packages widget type
