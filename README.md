@@ -1,3 +1,3 @@
 # My awesome setup:
 
-![gruvsome-rice](https://user-images.githubusercontent.com/46969863/77739603-1313ac00-7012-11ea-9887-7465a3ced748.png)
+![gruvsome-rice](https://user-images.githubusercontent.com/46969863/79278020-34e2af00-7eab-11ea-8a8c-0a81a5766a17.png)
