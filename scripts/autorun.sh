@@ -7,6 +7,6 @@ function run {
   fi
 }
 
-run compton --vsync --config ~/.config/compton.conf
+run picom --vsync --config ~/.config/picom.conf
 run nm-applet
 run redshift-gtk
