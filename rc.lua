@@ -18,6 +18,7 @@ local battery_widget = require("widgets.battery")
 local pkg_widget = require("widgets.pkg")
 local network_widget = require("widgets.network")
 local cpu_widget = require("widgets.cpu")
+local gpu_widget = require("widgets.gpu")
 
 -- Autorun
 awful.spawn.with_shell("~/.config/awesome/scripts/autorun.sh")
@@ -222,6 +223,8 @@ awful.screen.connect_for_each_screen(function(s)
             network_widget.down_widget,
             vert_sep,
             network_widget.up_widget,
+            vert_sep,
+            gpu_widget,
             vert_sep,
             cpu_widget,
             vert_sep,
