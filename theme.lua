@@ -51,7 +51,9 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 )
 
 -- Variables set for theming notifications:
-theme.notification_font = "noto sans display medium 12"
+theme.notification_font         = "noto sans display medium 12"
+theme.notification_max_width    = dpi(350)
+theme.notification_max_height   = dpi(175)
 
 theme.menu_height = dpi(15)
 
