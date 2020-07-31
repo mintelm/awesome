@@ -296,29 +296,37 @@ globalkeys = gears.table.join(
 -- client manipulation
 -- Resizes client based on layout
 local function client_resize (key, c)
-   if c == nil then
-      c = client.focus
-   end
+    if c == nil then
+        c = client.focus
+    end
 
-   if c.floating then
-      if     key == "Up"    then c:relative_move(0, 0, 0, -5)
-      elseif key == "Down"  then c:relative_move(0, 0, 0, 5)
-      elseif key == "Right" then c:relative_move(0, 0, 5, 0)
-      elseif key == "Left"  then c:relative_move(0, 0, -5, 0)
-      else
-         return false
-      end
-   else
-      if     key == "Up"    then awful.client.incwfact(-0.05)
-      elseif key == "Down"  then awful.client.incwfact(0.05)
-      elseif key == "Right" then awful.tag.incmwfact(0.05)
-      elseif key == "Left"  then awful.tag.incmwfact(-0.05)
-      else
-         return false
-      end
-   end
+    local layout = awful.layout.get(c.screen)
 
-   return true
+    if c.floating then
+        if     key == "Up"    then c:relative_move(0, 0, 0, -5)
+        elseif key == "Down"  then c:relative_move(0, 0, 0, 5)
+        elseif key == "Right" then c:relative_move(0, 0, 5, 0)
+        elseif key == "Left"  then c:relative_move(0, 0, -5, 0)
+        end
+    elseif layout == awful.layout.suit.tile then
+        if     key == "Up"    then awful.client.incwfact(-0.05)
+        elseif key == "Down"  then awful.client.incwfact(0.05)
+        elseif key == "Right" then awful.tag.incmwfact(0.05)
+        elseif key == "Left"  then awful.tag.incmwfact(-0.05)
+        end
+    elseif layout == awful.layout.suit.tile.bottom then
+        if     key == "Up"  then awful.tag.incmwfact(-0.05)
+        elseif key == "Down" then awful.tag.incmwfact(0.05)
+        elseif key == "Left"  then awful.client.incwfact(0.05)
+        elseif key == "Right"    then awful.client.incwfact(-0.05)
+        end
+    elseif layout == awful.layout.suit.fair then
+        if     key == "Up"    then awful.client.incwfact(-0.05)
+        elseif key == "Down"  then awful.client.incwfact(0.05)
+        elseif key == "Right" then awful.tag.incmwfact(0.05)
+        elseif key == "Left"  then awful.tag.incmwfact(-0.05)
+        end
+    end
 end
 
 clientkeys = gears.table.join(
