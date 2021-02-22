@@ -1,0 +1,5 @@
+require('configuration.client')
+require('configuration.tags')
+require('configuration.screen')
+require('configuration.keys')
+require('configuration.mouse')
