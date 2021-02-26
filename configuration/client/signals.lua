@@ -21,7 +21,7 @@ client.connect_signal(
 client.connect_signal(
     'tagged',
     function(c)
-        if c.last_layout ~= 'floating' then
+        if c.last_layout ~= 'floating' and not c.maximized then
             c : relative_move(0, 0, 0, - beautiful.titlebar_size)
         end
         dynamic_title(c)

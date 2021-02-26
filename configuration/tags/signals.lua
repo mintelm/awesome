@@ -17,7 +17,7 @@ tag.connect_signal(
     function(t)
         local clients = t : clients()
         for k,c in pairs(clients) do
-            if c.floating or c.first_tag.layout.name == 'floating' then
+            if (c.floating or c.first_tag.layout.name == 'floating') and not c.maximized then
                 awful.titlebar.show(c)
                 c : relative_move(0, 0, 0, - beautiful.titlebar_size)
             else
