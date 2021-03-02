@@ -1,7 +1,7 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
 
-local top_titlebar = require('configuration.client.titlebar')
+local top_titlebar = require('module.titlebar')
 
 function dynamic_title(c)
     if c.floating or c.first_tag.layout.name == 'floating' then
