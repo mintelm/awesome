@@ -12,7 +12,7 @@ ruled.client.connect_signal(
                 focus = awful.client.focus.filter,
                 raise = true,
                 screen = awful.screen.focused,
-                placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+                placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
             }
         }
 
