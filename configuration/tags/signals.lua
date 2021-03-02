@@ -16,7 +16,10 @@ tag.connect_signal(
     'property::layout',
     function(t)
         local clients = t : clients()
-        for k,c in pairs(clients) do
+        for _,c in pairs(clients) do
+            if c.fullscreen then
+                c.fullscreen = not c.fullscreen
+            end
             if c.maximized then
                 c.maximized = not c.maximized
             end
