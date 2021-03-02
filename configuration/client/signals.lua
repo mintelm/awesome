@@ -1,8 +1,6 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
 
-local top_titlebar = require('module.titlebar')
-
 function dynamic_title(c)
     if c.floating or c.first_tag.layout.name == 'floating' then
         awful.titlebar.show(c)
@@ -10,13 +8,6 @@ function dynamic_title(c)
         awful.titlebar.hide(c)
     end
 end
-
-client.connect_signal(
-    'request::titlebars',
-    function(c)
-        top_titlebar(c)
-    end
-)
 
 client.connect_signal(
     'tagged',

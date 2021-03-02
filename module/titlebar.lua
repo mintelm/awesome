@@ -91,4 +91,9 @@ local top_titlebar = function(c)
     }
 end
 
-return top_titlebar
+client.connect_signal(
+    'request::titlebars',
+    function(c)
+        top_titlebar(c)
+    end
+)

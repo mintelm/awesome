@@ -58,4 +58,9 @@ local top_panel = function(s)
     return panel
 end
 
-return top_panel
+screen.connect_signal(
+    'request::desktop_decoration',
+    function(s)
+        s.top_panel = top_panel(s)
+    end
+)
