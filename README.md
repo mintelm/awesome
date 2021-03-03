@@ -8,6 +8,7 @@ TBD
 - [x] fix bug: move maximized clients to screen with tile layout
 - [x] fix bug: fullscreen clients are resized when switchting layouts
 - [x] fix bug: raised clients are resized when switching layouts and don't get a border when unraised
+- [x] fix bug: floating -> maximize -> fullscreen -> tile: removes borders
 - [x] create startup
 - [x] gnome keyring
 - [ ] lockscreen
