@@ -91,9 +91,48 @@ local top_titlebar = function(c)
     }
 end
 
+local function dynamic_titlebar(c)
+    if c.floating or c.first_tag.layout.name == 'floating' then
+        awful.titlebar.show(c)
+    else
+        awful.titlebar.hide(c)
+    end
+
+    -- resize if last layout was not floating to compensate for titlebar.show
+    if c.last_layout ~= 'floating' then
+        c : relative_move(0, 0, 0, - beautiful.titlebar_size)
+    end
+
+    c.last_layout = c.first_tag.layout.name
+end
+
 client.connect_signal(
     'request::titlebars',
     function(c)
         top_titlebar(c)
+    end
+)
+
+client.connect_signal(
+    'tagged',
+    function(c)
+        dynamic_titlebar(c)
+    end
+)
+
+tag.connect_signal(
+    'property::layout',
+    function(t)
+        local clients = t : clients()
+        for _,c in pairs(clients) do
+            if c.fullscreen then
+                c.fullscreen = not c.fullscreen
+            end
+            if c.maximized then
+                c.maximized = not c.maximized
+            end
+
+            dynamic_titlebar(c)
+        end
     end
 )
