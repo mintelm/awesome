@@ -22,5 +22,16 @@ ruled.client.connect_signal(
             rule_any   = { type = { 'normal', 'dialog' } },
             properties = { titlebars_enabled = true      }
         }
+
+        ruled.client.append_rule {
+            id         = 'floating',
+            rule_any   = {
+                class = {
+                    'Gpick',
+                    'Arandr'
+                }
+            },
+            properties = { floating = true }
+        }
     end
 )
