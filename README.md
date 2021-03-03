@@ -12,6 +12,7 @@ TBD
 - [x] create startup
 - [x] gnome keyring
 - [ ] lockscreen
-- [ ] alt tab module / hot corner module
+- [x] alt tab module
+- [ ] hot corner module?
 - [ ] arandr on screen connect?
 - [ ] rice
