@@ -101,6 +101,10 @@ local function dynamic_titlebar(c)
     -- resize if last layout was not floating to compensate for titlebar.show
     if c.last_layout ~= 'floating' then
         c : relative_move(0, 0, 0, - beautiful.titlebar_size)
+        -- kitty titlebar 'folds' up while others 'fold' down ..
+        if c.class == 'kitty' then
+            c : relative_move(0, beautiful.titlebar_size, 0, 0)
+        end
     end
 
     c.last_layout = c.first_tag.layout.name
