@@ -5,7 +5,7 @@ TBD
 - [ ] add hotkeys for XF86 keys
 - [x] fix bug: floating -> fullscreen -> tile -> leave fullscreen
 - [ ] fix bug: move fullscreen windows to tile does not hide titlebar
-- [ ] fix bug: move maximized clients to screen with tile layout
+- [x] fix bug: move maximized clients to screen with tile layout
 - [x] fix bug: fullscreen clients are resized when switchting layouts
 - [x] fix bug: raised clients are resized when switching layouts and don't get a border when unraised
 - [x] create startup

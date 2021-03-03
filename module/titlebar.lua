@@ -117,6 +117,11 @@ client.connect_signal(
     'tagged',
     function(c)
         dynamic_titlebar(c)
+        -- let awesome do the rescaling if maximized clients are tagged
+        if c.maximized then
+            c.maximized = not c.maximized
+            c.maximized = not c.maximized
+        end
     end
 )
 
