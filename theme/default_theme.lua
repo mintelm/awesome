@@ -29,7 +29,7 @@ theme.useless_gap           = dpi(7)
 theme.master_width_factor   = 0.55
 
 -- Titlebar
-theme.titlebar_size = dpi(24)
+theme.titlebar_size = dpi(22)
 theme.taglist_fg_focus = '#fe8019'
 theme.taglist_fg_occupied = '#373737'
 

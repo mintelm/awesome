@@ -105,6 +105,9 @@ local function dynamic_titlebar(c)
         if c.class == 'kitty' then
             c : relative_move(0, beautiful.titlebar_size, 0, 0)
         end
+        if c.class == 'Gnome-terminal' then
+            c : relative_move(0, 0, 0, beautiful.titlebar_size)
+        end
     end
 
     c.last_layout = c.first_tag.layout.name
