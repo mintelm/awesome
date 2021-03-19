@@ -51,13 +51,6 @@ local create_click_events = function(c)
 end
 
 local top_titlebar = function(c)
-    local titlebar = awful.titlebar(
-        c,
-        {
-            size = beautiful.titlebar_size
-        }
-    )
-
     -- buttons for the titlebar
     local buttons = {
         awful.button({ }, 1, function()
@@ -68,7 +61,7 @@ local top_titlebar = function(c)
         end),
     }
 
-    titlebar : setup {
+    awful.titlebar(c, { size = beautiful.titlebar_size }) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = create_click_events(c),
