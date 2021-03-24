@@ -39,7 +39,7 @@ theme.xcolor15 = '#eeeeec'
 -- Borders
 theme.border_normal             = '#373737'
 theme.border_width              = dpi(1)
-theme.border_focus              = '#fe8019'
+theme.border_focus              = theme.xcolor14
 theme.fullscreen_hide_border    = true
 theme.maximized_hide_border     = true
 

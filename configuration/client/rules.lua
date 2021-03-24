@@ -1,5 +1,13 @@
 local awful = require('awful')
 local ruled = require('ruled')
+local gears = require('gears')
+local beautiful = require('beautiful')
+
+local function prrect(radius, tl, tr, br, bl)
+    return function(cr, width, height)
+        gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl, radius)
+    end
+end
 
 ruled.client.connect_signal(
     'request::rules',
@@ -13,6 +21,9 @@ ruled.client.connect_signal(
                 raise = true,
                 screen = awful.screen.focused,
                 placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
+                shape = prrect(10, true, true, false, false),
+                shape_border_width = beautiful.border_width,
+                shape_border_color = beautiful.border_focus
             }
         }
 
