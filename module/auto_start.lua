@@ -1,8 +1,9 @@
 local awful = require('awful')
 local naughty = require('naughty')
-local apps = require('configuration.apps')
 
-local run_once = function(cmd)
+local auto_start = {}
+
+function auto_start.run_once(cmd)
     local binary = cmd
     local firstspace = cmd:find(' ')
 
@@ -29,6 +30,4 @@ local run_once = function(cmd)
     )
 end
 
-for _, app in ipairs(apps.auto_start) do
-    run_once(app)
-end
+return auto_start
