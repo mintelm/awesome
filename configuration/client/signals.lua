@@ -21,18 +21,3 @@ client.connect_signal(
         end
     end
 )
-
-client.connect_signal(
-    'property::fullscreen',
-    function(c)
-        if c.first_tag.layout.name == 'floating' then
-            awful.titlebar.toggle(c)
-            -- resize to compensate for titlebar.toggle
-            if c.fullscreen then
-                c:relative_move(0, 0, 0, beautiful.titlebar_size)
-            else
-                c:relative_move(0, 0, 0, - beautiful.titlebar_size)
-            end
-        end
-    end
-)
