@@ -1,9 +1,7 @@
-local gears = require('gears')
+local gfs = require('gears.filesystem')
 local dpi = require('beautiful.xresources').apply_dpi
 
-local theme_dir = gears.filesystem.get_configuration_dir() .. '/theme'
-local titlebar_icon_path = theme_dir .. '/icons/titlebar/'
-local tip = titlebar_icon_path
+local theme_dir = gfs.get_configuration_dir() .. '/theme'
 
 local theme = {}
 
@@ -12,8 +10,9 @@ theme.font = 'TeX Gyre Heros Regular 9'
 theme.font_bold = 'TeX Gyre Heros Bold 9'
 theme.icon_theme = 'WhiteSur-dark'
 theme.wallpaper = theme_dir .. '/wallpapers/zelda_art.jpg'
+theme.master_width_factor = 0.55
 
--- Colors
+-- General Color Definitions
 theme.xbg = '#1d2021'
 theme.xfg = '#eeeeec'
 theme.xcolor0 = '#2e3436'
@@ -32,26 +31,38 @@ theme.xcolor12 = '#80a4d4'
 theme.xcolor13 = '#ad7fa8'
 theme.xcolor14 = '#fe8019'
 theme.xcolor15 = '#eeeeec'
+theme.inactive = '#373737'
 
--- Borders
-theme.border_normal = '#373737'
-theme.border_width = dpi(1)
-theme.border_focus = theme.xcolor14
-theme.fullscreen_hide_border = true
-theme.maximized_hide_border = true
+theme.bg_normal = theme.xbg
+theme.bg_focus = theme.xcolor14
+theme.bg_urgent = theme.xcolor1
+theme.bg_minimize = theme.xcolor4
+theme.bg_systray = theme.bg_normal
+
+theme.fg_normal = theme.xfg
+theme.fg_focus = theme.xfg .. 'dd'
+theme.fg_urgent = theme.xfg .. 'dd'
+theme.fg_minimize = theme.xfg .. 'dd'
 
 -- Decorations
 theme.useless_gap = dpi(7)
-theme.master_width_factor = 0.55
+theme.border_width = dpi(1)
+theme.border_radius = dpi(6)
+theme.border_normal = theme.inactive
+theme.border_focus = theme.bg_focus
+theme.fullscreen_hide_border = true
+theme.maximized_hide_border = true
 
--- Titlebar
 theme.titlebar_size = dpi(22)
 theme.titlebar_icon_size = dpi(8)
-theme.titlebar_bg_focus = theme.xbg
-theme.titlebar_bg_normal = theme.xbg
-theme.titlebar_fg_normal = theme.xcolor8
-theme.titlebar_fg_focus = theme.xcolor15 .. 'dd'
-theme.taglist_fg_focus = '#fe8019'
-theme.taglist_fg_occupied = '#373737'
+theme.titlebar_bg_focus = theme.bg_normal
+theme.titlebar_bg_normal = theme.bg_normal
+theme.titlebar_fg_normal = theme.inactive
+theme.titlebar_fg_focus = theme.fg_focus
+
+theme.taglist_bg_focus = theme.bg_normal
+theme.taglist_bg_occupied = theme.bg_normal
+theme.taglist_fg_focus = theme.bg_focus
+theme.taglist_fg_occupied = theme.inactive
 
 return theme
