@@ -1,7 +1,8 @@
 local gfs = require('gears.filesystem')
 local dpi = require('beautiful.xresources').apply_dpi
 
-local theme_dir = gfs.get_configuration_dir() .. '/theme'
+local def_theme_path = gfs.get_themes_dir()
+local theme_path = gfs.get_configuration_dir() .. '/theme'
 
 local theme = {}
 
@@ -9,7 +10,7 @@ local theme = {}
 theme.font = 'TeX Gyre Heros Regular 9'
 theme.font_bold = 'TeX Gyre Heros Bold 9'
 theme.icon_theme = 'WhiteSur-dark'
-theme.wallpaper = theme_dir .. '/wallpapers/zelda_art.jpg'
+theme.wallpaper = theme_path .. '/wallpapers/zelda_art.jpg'
 theme.master_width_factor = 0.55
 
 -- General Color Definitions
@@ -66,5 +67,10 @@ theme.taglist_fg_focus = theme.bg_focus
 theme.taglist_fg_occupied = theme.fg_normal
 
 theme.systray_icon_spacing = dpi(5)
+
+theme.layout_floating  = def_theme_path .. 'default/layouts/floatingw.png'
+theme.layout_fullscreen = def_theme_path .. 'default/layouts/fullscreenw.png'
+theme.layout_tilebottom = def_theme_path .. 'default/layouts/tilebottomw.png'
+theme.layout_tile = def_theme_path .. 'default/layouts/tilew.png'
 
 return theme
