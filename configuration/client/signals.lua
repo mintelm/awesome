@@ -6,7 +6,7 @@ local titlebar = require('module.titlebar')
 client.connect_signal(
     'request::titlebars',
     function(c)
-        titlebar.top_titlebar(c)
+        titlebar.set_decoration(c)
     end
 )
 

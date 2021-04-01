@@ -86,7 +86,33 @@ local function create_title_button(c, color_focus, color_unfocus, shape)
     return title_button
 end
 
-function titlebar.top_titlebar(c)
+local function update_border(c, widget)
+    if c.maximized then
+        widget.bg = beautiful.border_normal
+        widget.shape = shapes.rrect(0)
+    elseif client.focus == c then
+        widget.bg = beautiful.border_focus
+        widget.shape = shapes.prrect(beautiful.border_radius, true, true, false, false)
+    else
+        widget.bg = beautiful.border_normal
+        widget.shape = shapes.prrect(beautiful.border_radius, true, true, false, false)
+    end
+end
+
+local function border(c)
+    local border = wibox.widget {
+        bg = beautiful.xcolor0,
+        widget = wibox.container.background
+    }
+
+    c:connect_signal('focus', function() update_border(c, border) end)
+    c:connect_signal('unfocus', function() update_border(c, border) end)
+    c:connect_signal('property::maximized', function() update_border(c, border) end)
+
+    return border
+end
+
+local function top(c)
     local powerline_depth = math.floor(0.42 * beautiful.titlebar_icon_size)
     local icon_size = beautiful.titlebar_icon_size
 
@@ -130,7 +156,7 @@ function titlebar.top_titlebar(c)
     local close = create_title_button(c, beautiful.xcolor1, beautiful.xcolor8, powerline(powerline_depth))
     close:connect_signal('button::release', function() c : kill() end)
 
-    awful.titlebar(c, { size = beautiful.titlebar_size, bg = beautiful.xbg }):setup {
+    local titlebar = wibox.widget {
         { -- Left
             awful.widget.clienticon(c),
             top = dpi(2),
@@ -164,24 +190,76 @@ function titlebar.top_titlebar(c)
         },
         layout = wibox.layout.align.horizontal
     }
+
+    -- wrap titlebar in a border
+    local top = border(c)
+    top:setup({
+        {
+            titlebar,
+            bg = beautiful.xbg,
+            shape = shapes.prrect(beautiful.border_radius, true, true, false, false),
+            widget = wibox.container.background
+        },
+        top = beautiful.border_width,
+        left = beautiful.border_width,
+        right = beautiful.border_width,
+        widget = wibox.container.margin
+    })
+
+    return top
 end
 
+function titlebar.set_decoration(c)
+    awful.titlebar(c, {
+            position = 'top',
+            size = beautiful.titlebar_size,
+            bg = 'transparent',
+    }):setup { top(c), layout = wibox.layout.flex.horizontal }
+
+    awful.titlebar(c, {
+            position = 'bottom',
+            size = beautiful.border_width,
+            bg = 'transparent',
+    }):setup { border(c), layout = wibox.layout.flex.horizontal }
+
+    awful.titlebar(c, {
+            position = 'left',
+            size = beautiful.border_width
+    }):setup { border(c), layout = wibox.layout.flex.horizontal }
+
+    awful.titlebar(c, {
+            position = 'right',
+            size = beautiful.border_width
+    }):setup { border(c), layout = wibox.layout.flex.horizontal }
+end
+
+-- add to tag signal: 'property::layout'
+-- and to client signal: 'tagged'
 function titlebar.dynamic_titlebar(c)
     if c.floating or c.first_tag.layout.name == 'floating' then
-        awful.titlebar.show(c)
+        awful.titlebar.show(c, 'top')
+        awful.titlebar.show(c, 'bottom')
+        awful.titlebar.show(c, 'left')
+        awful.titlebar.show(c, 'right')
+        c.border_width = dpi(0)
     else
-        awful.titlebar.hide(c)
+        awful.titlebar.hide(c, 'top')
+        awful.titlebar.hide(c, 'bottom')
+        awful.titlebar.hide(c, 'left')
+        awful.titlebar.hide(c, 'right')
+        c.border_width = beautiful.border_width
     end
 
     -- resize if last layout was not floating to compensate for titlebar.show
     if c.last_layout ~= 'floating' then
-        c:relative_move(0, 0, 0, - beautiful.titlebar_size)
+        local acc_size = beautiful.titlebar_size - beautiful.border_width
+        c:relative_move(0, 0, 0, - acc_size)
         -- kitty titlebar 'folds' up while others 'fold' down ..
         if c.class == 'kitty' then
-            c:relative_move(0, beautiful.titlebar_size, 0, 0)
+            c:relative_move(0, acc_size, 0, 0)
         end
         if c.class == 'Gnome-terminal' then
-            c:relative_move(0, 0, 0, beautiful.titlebar_size)
+            c:relative_move(0, 0, 0, acc_size)
         end
     end
 

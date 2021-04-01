@@ -17,10 +17,7 @@ ruled.client.connect_signal(
                 raise = true,
                 size_hints_honor = false,
                 screen = awful.screen.focused,
-                placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
-                shape = shapes.prrect(beautiful.border_radius, true, true, false, false),
-                shape_border_width = beautiful.border_width,
-                shape_border_color = beautiful.border_focus
+                placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen
             }
         }
 
