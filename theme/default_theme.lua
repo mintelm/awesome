@@ -37,7 +37,7 @@ theme.bg_normal = theme.xbg
 theme.bg_focus = theme.xcolor14
 theme.bg_urgent = theme.xcolor1
 theme.bg_minimize = theme.xcolor4
-theme.bg_systray = theme.bg_normal
+theme.bg_systray = theme.xcolor0
 
 theme.fg_normal = theme.xfg
 theme.fg_focus = theme.xfg .. 'dd'
@@ -60,9 +60,11 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_fg_normal = theme.inactive
 theme.titlebar_fg_focus = theme.fg_focus
 
-theme.taglist_bg_focus = theme.bg_normal
-theme.taglist_bg_occupied = theme.bg_normal
+theme.taglist_bg_focus = theme.xcolor0
+theme.taglist_bg_occupied = theme.xcolor0
 theme.taglist_fg_focus = theme.bg_focus
-theme.taglist_fg_occupied = theme.inactive
+theme.taglist_fg_occupied = theme.fg_normal
+
+theme.systray_icon_spacing = dpi(5)
 
 return theme
