@@ -15,6 +15,7 @@ ruled.client.connect_signal(
             properties = {
                 focus = awful.client.focus.filter,
                 raise = true,
+                size_hints_honor = false,
                 screen = awful.screen.focused,
                 placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
                 shape = shapes.prrect(beautiful.border_radius, true, true, false, false),
