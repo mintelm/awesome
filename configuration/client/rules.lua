@@ -36,7 +36,8 @@ ruled.client.connect_signal(
                 class = {
                     'Gpick',
                     'Arandr',
-                    'Bitwarden'
+                    'Bitwarden',
+                    'Galculator',
                 }
             },
             properties = { floating = true }
