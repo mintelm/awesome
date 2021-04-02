@@ -74,28 +74,37 @@ function panel.top_panel(s)
     }
 
     top_panel:setup {
-        layout = wibox.layout.align.horizontal,
-        expand = 'none',
-        -- left
+        layout = wibox.layout.align.vertical,
+        nil,
         {
             layout = wibox.layout.align.horizontal,
-            rounded_widget(mytaglist, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
-        },
-        -- middle
-        {
-            layout = wibox.layout.align.horizontal,
-            mytextclock
-        },
-        -- right
-        {
-            layout = wibox.layout.align.horizontal,
+            expand = 'none',
+            -- left
             {
-                rounded_widget(wibox.widget.systray(), dpi(1), dpi(1), dpi(8), dpi(8), beautiful.xcolor0),
-                widget = wibox.container.margin,
-                layout = awful.widget.only_on_screen,
-                screen = 'primary'
+                layout = wibox.layout.align.horizontal,
+                rounded_widget(mytaglist, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
             },
-            rounded_widget(mylayoutbox, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
+            -- middle
+            {
+                layout = wibox.layout.align.horizontal,
+                mytextclock
+            },
+            -- right
+            {
+                layout = wibox.layout.align.horizontal,
+                {
+                    rounded_widget(wibox.widget.systray(), dpi(1), dpi(1), dpi(8), dpi(8), beautiful.xcolor0),
+                    widget = wibox.container.margin,
+                    layout = awful.widget.only_on_screen,
+                    screen = 'primary'
+                },
+                rounded_widget(mylayoutbox, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
+            }
+        },
+        {
+            widget = wibox.container.background,
+            bg = beautiful.xcolor0,
+            forced_height = beautiful.border_width
         }
     }
 
