@@ -11,7 +11,7 @@ apps.default = {
 apps.auto_start = {
     'nm-applet',
     'eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh)',
-    --'picom --experimental-backends',
+    'picom',
     'element-desktop --hidden'
 }
 
