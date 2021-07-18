@@ -115,7 +115,7 @@ local function top(c)
         end
     end
 
-    local ontop = create_title_button(c, beautiful.xcolor4, beautiful.xcolor8, hexagon())
+    local ontop = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, hexagon())
     ontop:connect_signal('button::release', function() c.ontop = not c.ontop end)
     client.connect_signal(
         'property::ontop',
@@ -128,8 +128,8 @@ local function top(c)
         end
     )
 
-    local min = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, powerline(powerline_depth))
-    min:connect_signal('button::release', function() c.minimized = true end)
+    -- local min = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, powerline(powerline_depth))
+    -- min:connect_signal('button::release', function() c.minimized = true end)
 
     local max = create_title_button(c, beautiful.xcolor6, beautiful.xcolor8, powerline(powerline_depth))
     max:connect_signal('button::release', function() c.maximized = not c.maximized end)
@@ -168,7 +168,7 @@ local function top(c)
         { -- Right
             {
                 ontop,
-                min,
+                -- min,
                 max,
                 close,
                 spacing = dpi(0),
