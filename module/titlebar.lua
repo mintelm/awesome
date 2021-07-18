@@ -10,49 +10,34 @@ local shapes = require('module.shapes')
 local titlebar = {}
 
 local function create_click_events(c)
-    local double_click_event_handler = function(double_click_event)
+    -- Double click titlebar
+    function double_click_event_handler(double_click_event)
         if double_click_timer then
             double_click_timer:stop()
             double_click_timer = nil
-            double_click_event()
-            return
+            return true
         end
 
-        double_click_timer = gears.timer.start_new(
-            0.20,
-            function()
-                double_click_timer = nil
-                return false
-            end
-        )
-    end
-
-    local click_event = function()
-        if c.floating then
-            c.floating = false
-            return
-        end
-        c.maximized = not c.maximized
-        c:raise()
-        return
+        double_click_timer = gears.timer.start_new(0.20, function()
+            double_click_timer = nil
+            return false
+        end)
     end
 
 	local buttons = gears.table.join(
-		awful.button(
-			{},
-			1,
-			function()
-				double_click_event_handler(click_event)
-				c:activate { context = 'titlebar', action = 'mouse_move' }
-			end
-		),
-		awful.button(
-			{},
-			3,
-			function()
-				c:activate { context = 'titlebar', action = 'mouse_resize' }
-			end
-		)
+        awful.button({ }, 1, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            if double_click_event_handler() then
+                c.maximized = not c.maximized
+                c:raise()
+            else
+                awful.mouse.client.move(c)
+            end
+        end),
+        awful.button({ }, 3, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.resize(c)
+        end)
 	)
 
 	return buttons
@@ -124,6 +109,12 @@ local function top(c)
         return shapes.hexagon(icon_size, icon_size)
     end
 
+    local square = function()
+        return function(cr)
+            gears.shape.partially_rounded_rect(cr, icon_size, icon_size, tl, tr, br, bl, 0)
+        end
+    end
+
     local ontop = create_title_button(c, beautiful.xcolor4, beautiful.xcolor8, hexagon())
     ontop:connect_signal('button::release', function() c.ontop = not c.ontop end)
     client.connect_signal(
@@ -146,7 +137,7 @@ local function top(c)
         'property::maximized',
         function()
             if c.maximized then
-                max.shape = powerline(0)
+                max.shape = square()
             else
                 max.shape = powerline(powerline_depth)
             end
