@@ -251,7 +251,7 @@ function titlebar.dynamic_titlebar(c)
     end
 
     -- resize if last layout was not floating to compensate for titlebar.show
-    if c.last_layout ~= 'floating' then
+    if c.last_layout ~= 'floating' and c.last_layout ~= nil then
         local acc_size = beautiful.titlebar_size - beautiful.border_width
         c:relative_move(0, 0, 0, - acc_size)
         -- kitty titlebar 'folds' up while others 'fold' down ..
