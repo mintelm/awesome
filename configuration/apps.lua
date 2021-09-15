@@ -12,7 +12,6 @@ apps.auto_start = {
     'nm-applet',
     'eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh)',
     'picom',
-    'element-desktop --hidden'
 }
 
 for _, app in ipairs(apps.auto_start) do
