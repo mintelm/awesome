@@ -7,8 +7,9 @@ local theme_path = gfs.get_configuration_dir() .. '/theme'
 local theme = {}
 
 -- General
-theme.font = 'TeX Gyre Heros Regular 9'
-theme.font_bold = 'TeX Gyre Heros Bold 9'
+theme.font = 'Noto Sans 9'
+theme.font_bold = 'Noto Sans Bold 9'
+theme.font_mono = 'MesloLGS Nerd Font 9'
 theme.icon_theme = 'WhiteSur-dark'
 theme.wallpaper = theme_path .. '/wallpapers/zelda_art.jpg'
 theme.master_width_factor = 0.55
