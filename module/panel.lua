@@ -29,8 +29,8 @@ end
 
 function panel.top_panel(s)
     local top_panel = awful.wibar({ position = 'top', screen = s })
-    local mytextclock = wibox.widget.textclock()
-    local mylayoutbox = awful.widget.layoutbox {
+    local textclock = wibox.widget.textclock()
+    local layoutbox = awful.widget.layoutbox {
         screen = s,
         shape = shapes.rrect(beautiful.border_radius),
         buttons = {
@@ -40,7 +40,7 @@ function panel.top_panel(s)
             awful.button({ }, 5, function () awful.layout.inc( 1) end),
         }
     }
-    local mytaglist = awful.widget.taglist {
+    local taglist = awful.widget.taglist {
         screen = s,
         filter = awful.widget.taglist.filter.noempty,
         buttons = {
@@ -63,12 +63,12 @@ function panel.top_panel(s)
             -- left
             {
                 layout = wibox.layout.align.horizontal,
-                rounded_widget(mytaglist, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
+                rounded_widget(taglist, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
             },
             -- middle
             {
                 layout = wibox.layout.align.horizontal,
-                mytextclock
+                textclock,
             },
             -- right
             {
@@ -79,7 +79,7 @@ function panel.top_panel(s)
                     layout = awful.widget.only_on_screen,
                     screen = 'primary'
                 },
-                rounded_widget(mylayoutbox, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
+                rounded_widget(battery, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
             }
         },
         {

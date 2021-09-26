@@ -2,8 +2,7 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local gears = require('gears')
 local wibox = require('wibox')
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
 
 local shapes = require('module.shapes')
 
@@ -24,7 +23,7 @@ local function create_click_events(c)
         end)
     end
 
-	local buttons = gears.table.join(
+    local buttons = gears.table.join(
         awful.button({ }, 1, function()
             c:emit_signal("request::activate", "titlebar", {raise = true})
             if double_click_event_handler() then
@@ -38,9 +37,9 @@ local function create_click_events(c)
             c:emit_signal("request::activate", "titlebar", {raise = true})
             awful.mouse.client.resize(c)
         end)
-	)
+    )
 
-	return buttons
+    return buttons
 end
 
 local function create_title_button(c, color_focus, color_unfocus, shape)
