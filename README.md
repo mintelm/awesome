@@ -1,18 +1,20 @@
 ## My Awesome Setup
 TBD
 
+### Installation
+Requires an installed graphic driver e.g. `nvidia`, `xf86-video-intel`.
+#### Arch Package List (includes AUR)
+```awesome-git xorg-server xorg-xinit xorg-xrandr nerd-fonts-meslo noto-fonts-lite alacritty rofi networkmanager network-manager-applet google-chrome picom whitesur-icon-theme-git whitesur-gtk-theme-git whitesur-cursor-theme-git ```
+
+To install:
+```BASH
+# OPTIONS: -f --force
+./install.sh [-f]
+```
+
 ### TODO
 - [ ] add hotkeys for XF86 keys
-- [x] fix bug: floating -> fullscreen -> tile -> leave fullscreen
-- [x] fix bug: move fullscreen windows to tile does not hide titlebar
-- [x] fix bug: move maximized clients to screen with tile layout
-- [x] fix bug: fullscreen clients are resized when switchting layouts
-- [x] fix bug: raised clients are resized when switching layouts and don't get a border when unraised
-- [x] fix bug: floating -> maximize -> fullscreen -> tile: removes borders
-- [x] create startup
-- [x] gnome keyring
+- [ ] gnome keyring
 - [ ] lockscreen
-- [x] alt tab module
 - [ ] hot corner module?
 - [ ] arandr on screen connect?
-- [ ] rice
