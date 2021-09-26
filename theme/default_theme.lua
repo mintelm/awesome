@@ -13,7 +13,7 @@ theme.font = 'Noto Sans 9'
 theme.font_bold = 'Noto Sans Bold 9'
 theme.font_mono = 'MesloLGS Nerd Font 9'
 theme.icon_theme = 'WhiteSur-dark'
-theme.wallpaper = theme_path .. '/wallpapers/zelda_art.jpg'
+theme.wallpaper = theme_path .. '/wallpapers/jets.jpg'
 theme.master_width_factor = 0.55
 
 -- General Color Definitions
