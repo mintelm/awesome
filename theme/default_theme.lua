@@ -4,6 +4,8 @@ local dpi = require('beautiful.xresources').apply_dpi
 local def_theme_path = gfs.get_themes_dir()
 local theme_path = gfs.get_configuration_dir() .. '/theme'
 
+local shapes = require('module.shapes')
+
 local theme = {}
 
 -- General
@@ -73,5 +75,10 @@ theme.layout_floating  = def_theme_path .. 'default/layouts/floatingw.png'
 theme.layout_fullscreen = def_theme_path .. 'default/layouts/fullscreenw.png'
 theme.layout_tilebottom = def_theme_path .. 'default/layouts/tilebottomw.png'
 theme.layout_tile = def_theme_path .. 'default/layouts/tilew.png'
+
+-- Notifications
+theme.notification_shape = shapes.rrect(theme.border_radius)
+theme.notification_max_width = dpi(350)
+theme.notification_font = theme.font_mono
 
 return theme
