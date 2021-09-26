@@ -10,7 +10,7 @@ apps.default = {
     web_browser = 'google-chrome-stable',
     run_menu = 'rofi -modi drun -show drun -font "' .. beautiful.font_mono .. '" -show-icons \z
                -icone-theme "' .. beautiful.icon_theme .. '" -matching fuzzy -dpi 192 \z
-	       -theme ' .. ext_path .. 'gruvbox.rasi'
+               -theme ' .. ext_path .. 'gruvbox.rasi'
 }
 
 apps.auto_start = {
