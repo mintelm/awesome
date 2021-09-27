@@ -6,25 +6,30 @@ local gears = require('gears')
 
 local battery_path = '/sys/class/power_supply/BAT0/'
 
-local iconbox = wibox.widget {
-    image = beautiful.layout_tile,
-    widget = wibox.widget.imagebox,
-}
 local textbox = wibox.widget {
-    text = '100%',
+    text = 'BAT',
+    valign = 'center',
+    align = 'center',
     widget = wibox.widget.textbox,
 }
-
+local arcchart = wibox.widget {
+    max_value = 100,
+    value = 50,
+    thickness = 4,
+    rounded_edge = true,
+    start_angle = math.pi/2,
+    widget = wibox.container.arcchart,
+}
 local battery = wibox.widget {
     {
         textbox,
-        right = dpi(4),
         widget = wibox.container.margin,
+        right = dpi(4)
     },
-    iconbox,
+    arcchart,
     layout = wibox.layout.fixed.horizontal,
     set_capacity = function(_, val)
-        textbox.text = tonumber(val) .. '%'
+        arcchart.value = val
     end,
 }
 
