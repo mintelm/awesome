@@ -3,9 +3,11 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful.xresources').apply_dpi
 local awful = require('awful')
 local gears = require('gears')
+local naughty = require('naughty')
 
 local battery_path = '/sys/class/power_supply/BAT0/'
 local crit_threshold = 15
+local warningSent = false
 
 local textbox = wibox.widget {
     text = 'BAT',
@@ -21,6 +23,16 @@ local arcchart = wibox.widget {
     bg = beautiful.inactive,
     widget = wibox.container.arcchart,
 }
+local function battery_warning()
+    if not warningSent then
+        naughty.notify({
+            title = 'Warning',
+            text = 'Battery capacity is below 15%.',
+            preset = naughty.config.presets.critical,
+        })
+        warningSent = true
+    end
+end
 local battery = wibox.widget {
     -- wrap textbox in margin
     {
@@ -38,6 +50,7 @@ local battery = wibox.widget {
     set_capacity = function(_, val)
         arcchart.value = val
         if tonumber(val) <= crit_threshold then
+            battery_warning()
             arcchart.colors = { beautiful.xcolor1 }
         else
             arcchart.colors = { beautiful.fg }
