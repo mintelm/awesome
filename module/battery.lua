@@ -38,8 +38,9 @@ local battery = wibox.widget {
     -- wrap textbox in margin
     {
         textbox,
-        widget = wibox.container.margin,
+        visible = false,
         right = dpi(4),
+        widget = wibox.container.margin,
     },
     -- wrap arcchart in mirror container
     {
