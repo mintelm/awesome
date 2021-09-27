@@ -63,13 +63,13 @@ local battery = wibox.widget {
         arcchart.value = capacity
 
         if status == 'charging' then
-            arcchart.colors = { beautiful.xcolor2 }
+            arcchart.colors = { beautiful.xcolor10 }
             warning_sent = false
         elseif capacity <= crit_threshold then
             battery_warning()
-            arcchart.colors = { beautiful.xcolor1 }
+            arcchart.colors = { beautiful.xcolor9 }
         elseif capacity <= medium_threshold then
-            arcchart.colors = { beautiful.xcolor6 }
+            arcchart.colors = { beautiful.xcolor14 }
         else
             arcchart.colors = { beautiful.xfg }
         end
