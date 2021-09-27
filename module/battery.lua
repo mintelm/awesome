@@ -49,17 +49,31 @@ local battery = wibox.widget {
         widget = wibox.container.mirror,
     },
     layout = wibox.layout.fixed.horizontal,
-    set_capacity = function(_, val)
-        arcchart.value = val
-        if tonumber(val) <= crit_threshold then
+    set_info = function(_, val)
+        local capacity, status
+
+        for line in val:gmatch("([^\n]*)\n?") do
+            if capacity == nil then
+                capacity = tonumber(line)
+            else
+                status = string.lower(line)
+            end
+        end
+
+        arcchart.value = capacity
+
+        if status == 'charging' then
+            arcchart.colors = { beautiful.xcolor2 }
+            warning_sent = false
+        elseif capacity <= crit_threshold then
             battery_warning()
             arcchart.colors = { beautiful.xcolor1 }
-        elseif tonumber(val) <= medium_threshold then
+        elseif capacity <= medium_threshold then
             arcchart.colors = { beautiful.xcolor6 }
         else
             arcchart.colors = { beautiful.xfg }
         end
-    end,
+    end
 }
 
 -- Update widget content every 10s
@@ -69,9 +83,9 @@ gears.timer {
     autostart = true,
     callback  = function()
         awful.spawn.easy_async(
-            { 'cat', battery_path .. 'capacity' },
+            { 'cat', battery_path .. 'capacity', battery_path .. 'status' },
             function(stdout)
-                battery.capacity = stdout
+                battery.info = stdout
             end
         )
     end,
