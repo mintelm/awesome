@@ -5,6 +5,7 @@ local awful = require('awful')
 local gears = require('gears')
 
 local battery_path = '/sys/class/power_supply/BAT0/'
+local crit_threshold = 15
 
 local textbox = wibox.widget {
     text = 'BAT',
@@ -36,6 +37,11 @@ local battery = wibox.widget {
     layout = wibox.layout.fixed.horizontal,
     set_capacity = function(_, val)
         arcchart.value = val
+        if tonumber(val) <= crit_threshold then
+            arcchart.colors = { beautiful.xcolor1 }
+        else
+            arcchart.colors = { beautiful.fg }
+        end
     end,
 }
 
