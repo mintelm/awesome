@@ -14,19 +14,25 @@ local textbox = wibox.widget {
 }
 local arcchart = wibox.widget {
     max_value = 100,
-    value = 50,
+    value = 100,
     thickness = 4,
-    rounded_edge = true,
-    start_angle = math.pi/2,
+    start_angle = -math.pi/2,
+    bg = beautiful.inactive,
     widget = wibox.container.arcchart,
 }
 local battery = wibox.widget {
+    -- wrap textbox in margin
     {
         textbox,
         widget = wibox.container.margin,
-        right = dpi(4)
+        right = dpi(4),
     },
-    arcchart,
+    -- wrap arcchart in mirror container
+    {
+        arcchart,
+        reflection = { horizontal = true },
+        widget = wibox.container.mirror,
+    },
     layout = wibox.layout.fixed.horizontal,
     set_capacity = function(_, val)
         arcchart.value = val
