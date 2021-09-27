@@ -29,7 +29,7 @@ local function rounded_widget(widget, top, bottom, left, right, bg)
 end
 
 function panel.top_panel(s)
-    local top_panel = awful.wibar({ position = 'top', screen = s })
+    local top_panel = awful.wibar({ position = 'top', screen = s, height = beautiful.top_panel_size })
     local textclock = wibox.widget.textclock()
     local layoutbox = awful.widget.layoutbox {
         screen = s,

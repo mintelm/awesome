@@ -65,6 +65,8 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_fg_normal = theme.inactive
 theme.titlebar_fg_focus = theme.fg_focus
 
+theme.top_panel_size = dpi(26)
+
 theme.taglist_bg_focus = theme.xcolor0
 theme.taglist_bg_occupied = theme.xcolor0
 theme.taglist_fg_focus = theme.bg_focus
