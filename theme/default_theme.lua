@@ -1,5 +1,6 @@
 local gfs = require('gears.filesystem')
 local dpi = require('beautiful.xresources').apply_dpi
+local x_theme = require('beautiful.xresources').get_current_theme()
 
 local def_theme_path = gfs.get_themes_dir()
 local theme_path = gfs.get_configuration_dir() .. '/theme'
@@ -17,24 +18,24 @@ theme.wallpaper = theme_path .. '/wallpapers/jets.jpg'
 theme.master_width_factor = 0.55
 
 -- General Color Definitions
-theme.xbg = '#1d2021'
-theme.xfg = '#eeeeec'
-theme.xcolor0 = '#2e3436'   -- black
-theme.xcolor1 = '#cc0000'   -- dark red
-theme.xcolor2 = '#73d216'   -- dark green
-theme.xcolor3 = '#edd400'   -- dark yellow
-theme.xcolor4 = '#4881c0'   -- dark blue
-theme.xcolor5 = '#75507b'   -- dark magenta
-theme.xcolor6 = '#d65d0e'   -- dark cyan (orange in my system)
-theme.xcolor7 = '#d3d7cf'   -- light grey
-theme.xcolor8 = '#2e3436'   -- dark grey
-theme.xcolor9 = '#ef2929'   -- red
-theme.xcolor10 = '#8ae234'  -- green
-theme.xcolor11 = '#fce94f'  -- yellow
-theme.xcolor12 = '#80a4d4'  -- blue
-theme.xcolor13 = '#ad7fa8'  -- magenta
-theme.xcolor14 = '#fe8019'  -- cyan (orange in my system)
-theme.xcolor15 = '#eeeeec'  -- white
+theme.xbg = x_theme.background
+theme.xfg = x_theme.foreground
+theme.xcolor0 = x_theme.color0   -- black
+theme.xcolor1 = x_theme.color1   -- dark red
+theme.xcolor2 = x_theme.color2   -- dark green
+theme.xcolor3 = x_theme.color3   -- dark yellow
+theme.xcolor4 = x_theme.color4   -- dark blue
+theme.xcolor5 = x_theme.color5   -- dark magenta
+theme.xcolor6 = x_theme.color6   -- dark cyan (orange in my system)
+theme.xcolor7 = x_theme.color7   -- light grey
+theme.xcolor8 = x_theme.color8   -- dark grey
+theme.xcolor9 = x_theme.color9   -- red
+theme.xcolor10 = x_theme.color10 -- green
+theme.xcolor11 = x_theme.color11 -- yellow
+theme.xcolor12 = x_theme.color12 -- blue
+theme.xcolor13 = x_theme.color13 -- magenta
+theme.xcolor14 = x_theme.color14 -- cyan (orange in my system)
+theme.xcolor15 = x_theme.color15 -- white
 theme.inactive = '#373737'
 
 theme.bg_normal = theme.xbg
