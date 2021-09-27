@@ -8,7 +8,7 @@ local naughty = require('naughty')
 local battery_path = '/sys/class/power_supply/BAT0/'
 local crit_threshold = 15
 local medium_threshold = 40
-local warningSent = false
+local warning_sent = false
 
 local textbox = wibox.widget {
     text = 'BAT',
@@ -25,13 +25,13 @@ local arcchart = wibox.widget {
     widget = wibox.container.arcchart,
 }
 local function battery_warning()
-    if not warningSent then
+    if not warning_sent then
         naughty.notify({
             title = 'Warning',
             text = 'Battery capacity is below 15%.',
             preset = naughty.config.presets.critical,
         })
-        warningSent = true
+        warning_sent = true
     end
 end
 local battery = wibox.widget {
