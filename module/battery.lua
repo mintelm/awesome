@@ -7,6 +7,7 @@ local naughty = require('naughty')
 
 local battery_path = '/sys/class/power_supply/BAT0/'
 local crit_threshold = 15
+local medium_threshold = 40
 local warningSent = false
 
 local textbox = wibox.widget {
@@ -52,8 +53,10 @@ local battery = wibox.widget {
         if tonumber(val) <= crit_threshold then
             battery_warning()
             arcchart.colors = { beautiful.xcolor1 }
+        elseif tonumber(val) <= medium_threshold then
+            arcchart.colors = { beautiful.xcolor6 }
         else
-            arcchart.colors = { beautiful.fg }
+            arcchart.colors = { beautiful.xfg }
         end
     end,
 }
