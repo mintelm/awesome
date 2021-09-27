@@ -56,11 +56,10 @@ function panel.top_panel(s)
     }
 
     top_panel:setup {
-        layout = wibox.layout.align.vertical,
+        -- top (empty)
         nil,
+        -- middle (main panel)
         {
-            layout = wibox.layout.align.horizontal,
-            expand = 'none',
             -- left
             {
                 layout = wibox.layout.align.horizontal,
@@ -73,22 +72,25 @@ function panel.top_panel(s)
             },
             -- right
             {
-                layout = wibox.layout.align.horizontal,
                 {
                     rounded_widget(wibox.widget.systray(), dpi(1), dpi(1), dpi(8), dpi(8), beautiful.xcolor0),
-                    widget = wibox.container.margin,
                     layout = awful.widget.only_on_screen,
                     screen = 'primary'
                 },
                 rounded_widget(battery, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 rounded_widget(layoutbox, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
-            }
+                layout = wibox.layout.fixed.horizontal,
+            },
+            layout = wibox.layout.align.horizontal,
+            expand = 'none',
         },
+        -- bottom (accent line)
         {
             widget = wibox.container.background,
             bg = beautiful.xcolor0,
             forced_height = beautiful.border_width
-        }
+        },
+        layout = wibox.layout.align.vertical,
     }
 
     return top_panel
