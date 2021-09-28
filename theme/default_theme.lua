@@ -65,6 +65,12 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_fg_normal = theme.inactive
 theme.titlebar_fg_focus = theme.fg_focus
 
+theme.tooltip_bg = theme.xbg
+theme.tooltip_fg = theme.xfg
+theme.tooltip_shape = shapes.rrect(theme.border_radius)
+theme.tooltip_border_width = theme.border_width
+theme.tooltip_border_color = theme.border_focus
+
 theme.top_panel_size = dpi(26)
 
 theme.taglist_bg_focus = theme.xcolor0
