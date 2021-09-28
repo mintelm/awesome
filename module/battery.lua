@@ -4,6 +4,7 @@ local dpi = require('beautiful.xresources').apply_dpi
 local awful = require('awful')
 local gears = require('gears')
 local naughty = require('naughty')
+local awful = require('awful')
 
 local battery_path = '/sys/class/power_supply/BAT0/'
 local crit_threshold = 15
@@ -23,6 +24,9 @@ local arcchart = wibox.widget {
     start_angle = -math.pi/2,
     bg = beautiful.inactive,
     widget = wibox.container.arcchart,
+}
+local battery_tooltip = awful.tooltip {
+    objects = { arcchart },
 }
 local function battery_warning()
     if not warning_sent then
@@ -83,9 +87,10 @@ gears.timer {
     autostart = true,
     callback  = function()
         awful.spawn.easy_async(
-            { 'cat', battery_path .. 'capacity', battery_path .. 'status' },
+            { 'cat', battery_path .. 'status', battery_path .. 'capacity' },
             function(stdout)
                 battery.info = stdout
+                battery_tooltip.text = stdout
             end
         )
     end,
