@@ -9,6 +9,11 @@ local battery = require('module.battery')
 local panel = {}
 
 local function rounded_widget(widget, top, bottom, left, right, bg)
+    -- check if widget is a table
+    if next(widget) == nil then
+        return nil
+    end
+
     return {
         {
             {

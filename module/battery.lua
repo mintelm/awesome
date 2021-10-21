@@ -11,6 +11,11 @@ local crit_threshold = 15
 local medium_threshold = 40
 local warning_sent = false
 
+-- check if system uses a battery
+if not gears.filesystem.is_dir(battery_path) then
+    return { }
+end
+
 local textbox = wibox.widget {
     text = 'BAT',
     valign = 'center',
