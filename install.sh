@@ -1,20 +1,26 @@
 #!/bin/bash
 
-# GETOPTS
+usage() {
+        printf "Usage: $0 [-f] \n\nOptions:\n    -f: force link; also creates dirs\n";
+        exit 1;
+}
+
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 # reset in case getopts has been used previously in shell
 OPTIND=1
-force=''
 while getopts "f" opt; do
         case "$opt" in
-                f) force='f'
-                   ;;
+                f)
+                        f='f'
+                        echo Creating required directories...
+                        mkdir -p ~/.config/awesome
+                        ;;
+                *)
+                        usage
+                        ;;
         esac
 done
 
-# create dirs
-if ! [ -z ${force} ]; then
-        mkdir -p ~/.config/awesome
-fi
-
-set -x
-ln -sv$force $PWD/* ~/.config/awesome/
+echo Linking awesome stuff...
+ln -sv$f $SCRIPT_DIR/* ~/.config/awesome/
