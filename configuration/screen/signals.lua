@@ -7,7 +7,11 @@ local top_panel = require('module.panel').top_panel
 screen.connect_signal(
     'request::desktop_decoration',
     function(s)
-        awful.tag({ '1', '2', '3', '4', '5', '6', '7', '8', '9' }, s, awful.layout.suit.floating)
+        local layout = awful.layout.layouts[1]
+        if s == screen.primary then
+            layout = awful.layout.layouts[0]
+        end
+        awful.tag({ '1', '2', '3', '4', '5', '6', '7', '8', '9' }, s, layout)
         s.top_panel = top_panel(s)
     end
 )
