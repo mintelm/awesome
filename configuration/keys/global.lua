@@ -7,23 +7,23 @@ local apps = require('configuration.apps')
 awful.keyboard.append_global_keybindings({
     -- group = awesome
     awful.key(
-		{ modkey },
-		'F1',
-		hotkeys_popup.show_help,
-		{ description = 'show help', group = 'awesome' }
-	),
-	awful.key(
+        { modkey },
+        'F1',
+        hotkeys_popup.show_help,
+        { description = 'show help', group = 'awesome' }
+    ),
+    awful.key(
         { modkey, 'Control' },
-		'r',
-		awesome.restart,
-		{ description = 'reload awesome', group = 'awesome' }
-	),
-	awful.key(
+        'r',
+        awesome.restart,
+        { description = 'reload awesome', group = 'awesome' }
+    ),
+    awful.key(
         { modkey, 'Control' },
-		'q',
-		awesome.quit,
-		{ description = 'quit awesome', group = 'awesome' }
-	),
+        'q',
+        awesome.quit,
+        { description = 'quit awesome', group = 'awesome' }
+    ),
 
     -- group = client
     awful.key(
@@ -89,80 +89,80 @@ awful.keyboard.append_global_keybindings({
     },
 
     -- group = layout
-	awful.key(
-		{ modkey },
-		'l',
-		function()
-			awful.tag.incmwfact(0.05)
-		end,
-		{ description = 'increase master width factor', group = 'layout' }
-	),
-	awful.key(
-		{ modkey },
-		'h',
-		function()
-			awful.tag.incmwfact(-0.05)
-		end,
-		{ description = 'decrease master width factor', group = 'layout' }
-	),
-	awful.key(
-		{ modkey },
-		'a',
-		function()
-			awful.tag.incnmaster(1, nil, true)
-		end,
-		{ description = 'increase the number of master clients', group = 'layout' }
-	),
-	awful.key(
-		{ modkey },
-		'x',
-		function()
-			awful.tag.incnmaster(-1, nil, true)
-		end,
-		{ description = 'decrease the number of master clients', group = 'layout' }
-	),
-	awful.key(
-		{ modkey },
-		'v',
+    awful.key(
+        { modkey },
+        'l',
+        function()
+            awful.tag.incmwfact(0.05)
+        end,
+        { description = 'increase master width factor', group = 'layout' }
+    ),
+    awful.key(
+        { modkey },
+        'h',
+        function()
+            awful.tag.incmwfact(-0.05)
+        end,
+        { description = 'decrease master width factor', group = 'layout' }
+    ),
+    awful.key(
+        { modkey },
+        'a',
+        function()
+            awful.tag.incnmaster(1, nil, true)
+        end,
+        { description = 'increase the number of master clients', group = 'layout' }
+    ),
+    awful.key(
+        { modkey },
+        'x',
+        function()
+            awful.tag.incnmaster(-1, nil, true)
+        end,
+        { description = 'decrease the number of master clients', group = 'layout' }
+    ),
+    awful.key(
+        { modkey },
+        'v',
         function()
             select_layout(awful.layout.suit.tile)
         end,
-		{ description = 'set layout to `tile`', group = 'layout' }
-	),
-	awful.key(
-		{ modkey },
-		'b',
+        { description = 'set layout to `tile`', group = 'layout' }
+    ),
+    awful.key(
+        { modkey },
+        'b',
         function()
             select_layout(awful.layout.suit.tile.bottom)
         end,
-		{ description = 'set layout to `tile bottom`', group = 'layout' }
-	),
-	awful.key(
-		{ modkey },
-		'n',
+        { description = 'set layout to `tile bottom`', group = 'layout' }
+    ),
+    awful.key(
+        { modkey },
+        'n',
         function()
             select_layout(awful.layout.suit.floating)
         end,
-		{ description = 'set layout to `floating`', group = 'layout' }
-	),
+        { description = 'set layout to `floating`', group = 'layout' }
+    ),
 
     -- group = screen
-	awful.key(
-		{ modkey },
-		',',
-		function()
-			awful.screen.focus_relative(1)
-		end,
-		{ description = 'focus the next screen', group = 'screen' }
-	),
-	awful.key(
-		{ modkey },
-		'.',
-		function()
-			awful.screen.focus_relative(-1)
-		end,
-		{ description = 'focus the previous screen', group = 'screen' }
-	),
+    awful.key(
+        { modkey },
+        ',',
+        function()
+            awful.screen.focus_relative(1)
+        end,
+        { description = 'focus the next screen', group = 'screen' }
+    ),
+    awful.key(
+        { modkey },
+        '.',
+        function()
+            awful.screen.focus_relative(-1)
+        end,
+        { description = 'focus the previous screen', group = 'screen' }
+    ),
 
     -- group = launcher
     awful.key(
@@ -180,7 +180,7 @@ awful.keyboard.append_global_keybindings({
             awful.spawn(apps.default.run_menu)
         end,
         { description = 'open default run menu', group = 'launcher' }
-	)
+    )
 })
 
 function select_layout(l)
