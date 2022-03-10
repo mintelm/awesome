@@ -27,6 +27,14 @@ client.connect_signal(
                 { description = 'toggle fullscreen', group = 'client' }
             ),
             awful.key(
+                { modkey },
+                'm',
+                function(c)
+                    c.maximized = not c.maximized
+                end,
+                { description = 'toggle fullscreen', group = 'client' }
+            ),
+            awful.key(
                 { altkey },
                 'Tab',
                 function ()
