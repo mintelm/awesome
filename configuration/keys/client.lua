@@ -1,8 +1,9 @@
 local awful = require('awful')
+local bling = require('module.bling')
 
 local modkey = require('configuration.keys.mod').mod_key
 local altkey = require('configuration.keys.mod').alt_key
-local alt_tab = require('module.alt_tab')
+--local alt_tab = require('module.alt_tab')
 
 client.connect_signal(
     'request::default_keybindings',
@@ -38,11 +39,13 @@ client.connect_signal(
                 { altkey },
                 'Tab',
                 function ()
-                    alt_tab.switch( 1, altkey, 'Alt_L', 'Shift', 'Tab')
+		    awesome.emit_signal('bling::window_switcher::turn_on')
+                    --alt_tab.switch( 1, altkey, 'Alt_L', 'Shift', 'Tab')
                 end,
-                { description = 'cycle client list forwards', group = 'client' }
+                { description = 'window switcher', group = 'client' }
             ),
-                awful.key(
+	    --[[
+	    awful.key(
                 { altkey, 'Shift' },
                 'Tab',
                 function ()
@@ -50,6 +53,7 @@ client.connect_signal(
                 end,
                 { description = 'cycle client list backwards', group = 'client' }
             ),
+	    --]]
             -- group = screen
             awful.key(
                 { modkey, 'Shift' },
