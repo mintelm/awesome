@@ -1,2 +1,2 @@
-require('module.savefloats')
-require('module.better-resize')
+require('modules.savefloats')
+require('modules.better_resize')

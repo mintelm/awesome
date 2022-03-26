@@ -1,4 +1,4 @@
-local bling = require('module.bling')
+local bling = require('modules.bling')
 
 bling.widget.window_switcher.enable {
     type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews

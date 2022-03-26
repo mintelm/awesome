@@ -2,7 +2,7 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local gears = require('gears')
 
-local top_panel = require('module.panel').top_panel
+local top_panel = require('modules.panel').top_panel
 
 screen.connect_signal(
     'request::desktop_decoration',

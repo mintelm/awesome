@@ -5,7 +5,7 @@ local x_theme = require('beautiful.xresources').get_current_theme()
 local def_theme_path = gfs.get_themes_dir()
 local theme_path = gfs.get_configuration_dir() .. '/theme'
 
-local shapes = require('module.shapes')
+local shapes = require('modules.shapes')
 
 local theme = {}
 

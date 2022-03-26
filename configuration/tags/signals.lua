@@ -1,7 +1,7 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
 
-local dynamic_titlebar = require('module.titlebar').dynamic_titlebar
+local dynamic_titlebar = require('modules.titlebar').dynamic_titlebar
 
 tag.connect_signal(
     'request::default_layouts',

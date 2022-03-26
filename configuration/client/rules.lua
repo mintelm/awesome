@@ -3,7 +3,7 @@ local ruled = require('ruled')
 local gears = require('gears')
 local beautiful = require('beautiful')
 
-local shapes = require('module.shapes')
+local shapes = require('modules.shapes')
 
 ruled.client.connect_signal(
     'request::rules',

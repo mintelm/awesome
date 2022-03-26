@@ -1,4 +1,4 @@
-local auto_start = require('module.auto_start')
+local auto_start = require('modules.auto_start')
 local beautiful = require('beautiful')
 
 local apps = {}

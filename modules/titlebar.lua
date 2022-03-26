@@ -4,7 +4,7 @@ local gears = require('gears')
 local wibox = require('wibox')
 local dpi = require("beautiful.xresources").apply_dpi
 
-local shapes = require('module.shapes')
+local shapes = require('modules.shapes')
 
 local titlebar = {}
 

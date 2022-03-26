@@ -1,7 +1,7 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
 
-local titlebar = require('module.titlebar')
+local titlebar = require('modules.titlebar')
 
 client.connect_signal(
     'request::titlebars',

@@ -3,8 +3,8 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = require('beautiful.xresources').apply_dpi
 
-local shapes = require('module.shapes')
-local battery = require('module.battery')
+local shapes = require('modules.shapes')
+local battery = require('modules.battery')
 
 local panel = {}
 

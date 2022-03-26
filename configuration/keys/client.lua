@@ -1,5 +1,5 @@
 local awful = require('awful')
-local bling = require('module.bling')
+local bling = require('modules.bling')
 
 local modkey = require('configuration.keys.mod').mod_key
 local altkey = require('configuration.keys.mod').alt_key
