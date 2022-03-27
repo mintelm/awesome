@@ -85,6 +85,26 @@ theme.layout_fullscreen = def_theme_path .. 'default/layouts/fullscreenw.png'
 theme.layout_tilebottom = def_theme_path .. 'default/layouts/tilebottomw.png'
 theme.layout_tile = def_theme_path .. 'default/layouts/tilew.png'
 
+theme.window_switcher_widget_bg = theme.bg_normal
+theme.window_switcher_widget_border_width = theme.border_width
+theme.window_switcher_widget_border_radius = theme.border_radius
+theme.window_switcher_widget_border_color = theme.border_normal
+theme.window_switcher_clients_spacing = dpi(20)
+theme.window_switcher_client_icon_horizontal_spacing = dpi(5)
+theme.window_switcher_client_width = dpi(150)
+theme.window_switcher_client_height = dpi(200)
+theme.window_switcher_client_margins = dpi(10)
+theme.window_switcher_thumbnail_margins = dpi(10)
+theme.thumbnail_scale = false
+theme.window_switcher_name_margins = 0
+theme.window_switcher_name_valign = 'center'
+theme.window_switcher_name_forced_width = dpi(150)
+theme.window_switcher_name_font = theme.font
+theme.window_switcher_name_normal_color = theme.border_normal
+theme.window_switcher_name_focus_color = theme.border_focus
+theme.window_switcher_icon_valign = 'center'
+theme.window_switcher_icon_width = dpi(30)
+
 -- Notifications
 theme.notification_shape = shapes.rrect(theme.border_radius)
 theme.notification_max_width = dpi(350)
