@@ -1,6 +1,5 @@
 local awful = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup')
-local bling = require('modules.bling')
 
 local apps = require('configuration.apps')
 
@@ -14,56 +13,7 @@ function select_layout(l)
     end
 end
 
--- keybinds that need client context
-client.connect_signal('request::default_keybindings', function()
-    awful.keyboard.append_client_keybindings({
-        -- group = client
-        awful.key(
-            { mod_key},
-            'w',
-            function(c)
-                c:kill()
-            end,
-            { description = 'close', group = 'client' }
-        ),
-        awful.key(
-            { mod_key },
-            'f',
-            function(c)
-                c.fullscreen = not c.fullscreen
-                c:raise()
-            end,
-            { description = 'toggle fullscreen', group = 'client' }
-        ),
-        awful.key(
-            { mod_key },
-            'm',
-            function(c)
-                c.maximized = not c.maximized
-            end,
-            { description = 'toggle fullscreen', group = 'client' }
-        ),
-        -- group = screen
-        awful.key(
-            { mod_key, 'Shift' },
-            ',',
-            function(c)
-                c:move_to_screen()
-            end,
-            { description = 'move client to next screen', group = 'screen' }
-        ),
-        awful.key(
-            { mod_key, 'Shift' },
-            '.',
-            function(c)
-                c:move_to_screen(c.screen.index-1)
-            end,
-            { description = 'move client to previous screen', group = 'screen' }
-        ),
-    })
-end
-)
-
+-- global binds
 awful.keyboard.append_global_keybindings({
     -- group = awesome
     awful.key(
@@ -246,6 +196,56 @@ awful.keyboard.append_global_keybindings({
         { description = 'open default run menu', group = 'launcher' }
     ),
 })
+
+-- keybinds that need client context
+client.connect_signal('request::default_keybindings', function()
+    awful.keyboard.append_client_keybindings({
+        -- group = client
+        awful.key(
+            { mod_key},
+            'w',
+            function(c)
+                c:kill()
+            end,
+            { description = 'close', group = 'client' }
+        ),
+        awful.key(
+            { mod_key },
+            'f',
+            function(c)
+                c.fullscreen = not c.fullscreen
+                c:raise()
+            end,
+            { description = 'toggle fullscreen', group = 'client' }
+        ),
+        awful.key(
+            { mod_key },
+            'm',
+            function(c)
+                c.maximized = not c.maximized
+            end,
+            { description = 'toggle fullscreen', group = 'client' }
+        ),
+        -- group = screen
+        awful.key(
+            { mod_key, 'Shift' },
+            ',',
+            function(c)
+                c:move_to_screen()
+            end,
+            { description = 'move client to next screen', group = 'screen' }
+        ),
+        awful.key(
+            { mod_key, 'Shift' },
+            '.',
+            function(c)
+                c:move_to_screen(c.screen.index-1)
+            end,
+            { description = 'move client to previous screen', group = 'screen' }
+        ),
+    })
+end
+)
 
 -- mouse settings
 require('awful.autofocus')
