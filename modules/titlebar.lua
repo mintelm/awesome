@@ -197,7 +197,7 @@ local function top(c)
     return top
 end
 
-function set_decoration(c)
+local function set_decoration(c)
     awful.titlebar(c, {
             position = 'top',
             size = beautiful.titlebar_size,
@@ -221,7 +221,7 @@ function set_decoration(c)
     }):setup { border(c), layout = wibox.layout.flex.horizontal }
 end
 
-function dynamic_titlebar(c)
+local function dynamic_titlebar(c)
     if c.floating or c.first_tag.layout.name == 'floating' then
         awful.titlebar.show(c, 'top')
         awful.titlebar.show(c, 'bottom')
