@@ -10,9 +10,9 @@ require('configuration.keybinds')
 require('modules.top_panel')
 
 local function set_default_layout(s)
-    local layout = awful.layout.layouts[1]
+    local layout = defaults.layouts[1]
     if s == screen.primary then
-        layout = awful.layout.layouts[0]
+        layout = defaults.layouts[0]
     end
     awful.tag(defaults.tags, s, layout)
 end
