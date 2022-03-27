@@ -3,7 +3,6 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 local bling = require('modules.bling')
 
 local apps = require('configuration.apps')
---local alt_tab = require('module.alt_tab')
 
 local mod_key = 'Mod4'
 local alt_key = 'Mod1'
@@ -44,16 +43,6 @@ client.connect_signal('request::default_keybindings', function()
             end,
             { description = 'toggle fullscreen', group = 'client' }
         ),
-        --[[
-        awful.key(
-            { alt_key, 'Shift' },
-            'Tab',
-            function ()
-                alt_tab.switch(-1, alt_key, 'Alt_L', 'Shift', 'Tab')
-            end,
-            { description = 'cycle client list backwards', group = 'client' }
-        ),
-        --]]
         -- group = screen
         awful.key(
             { mod_key, 'Shift' },
