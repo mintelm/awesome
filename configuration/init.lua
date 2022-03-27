@@ -7,7 +7,7 @@ local defaults = require('configuration.defaults')
 require('configuration.bling')
 require('configuration.windows')
 require('configuration.keybinds')
-require('modules.panel')
+require('modules.top_panel')
 
 local function set_default_layout(s)
     local layout = awful.layout.layouts[1]
