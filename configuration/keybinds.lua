@@ -1,7 +1,7 @@
 local awful = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup')
 
-local apps = require('configuration.apps')
+local apps = require('defaults').apps
 
 local mod_key = 'Mod4'
 local alt_key = 'Mod1'
@@ -183,7 +183,7 @@ awful.keyboard.append_global_keybindings({
         { mod_key },
         'Return',
         function()
-            awful.spawn(apps.default.terminal)
+            awful.spawn(apps.terminal)
         end,
         { description = 'open default terminal', group = 'launcher' }
     ),
@@ -191,7 +191,7 @@ awful.keyboard.append_global_keybindings({
         { mod_key },
         'space',
         function()
-            awful.spawn(apps.default.run_menu)
+            awful.spawn(apps.run_menu)
         end,
         { description = 'open default run menu', group = 'launcher' }
     ),

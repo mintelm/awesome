@@ -6,8 +6,6 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 local shapes = require('modules.shapes')
 
-local titlebar = {}
-
 local function create_click_events(c)
     -- Double click titlebar
     function double_click_event_handler(double_click_event)
@@ -199,7 +197,7 @@ local function top(c)
     return top
 end
 
-function titlebar.set_decoration(c)
+function set_decoration(c)
     awful.titlebar(c, {
             position = 'top',
             size = beautiful.titlebar_size,
@@ -223,9 +221,7 @@ function titlebar.set_decoration(c)
     }):setup { border(c), layout = wibox.layout.flex.horizontal }
 end
 
--- add to tag signal: 'property::layout'
--- and to client signal: 'tagged'
-function titlebar.dynamic_titlebar(c)
+function dynamic_titlebar(c)
     if c.floating or c.first_tag.layout.name == 'floating' then
         awful.titlebar.show(c, 'top')
         awful.titlebar.show(c, 'bottom')
@@ -256,4 +252,38 @@ function titlebar.dynamic_titlebar(c)
     c.last_layout = c.first_tag.layout.name
 end
 
-return titlebar
+client.connect_signal(
+    'request::titlebars',
+    function(c)
+        set_decoration(c)
+    end
+)
+
+client.connect_signal(
+    'tagged',
+    function(c)
+        dynamic_titlebar(c)
+        -- let awesome do the rescaling if maximized clients are tagged
+        if c.maximized then
+            c.maximized = not c.maximized
+            c.maximized = not c.maximized
+        end
+    end
+)
+
+tag.connect_signal(
+    'property::layout',
+    function(t)
+        local clients = t : clients()
+        for _,c in pairs(clients) do
+            if c.fullscreen then
+                c.fullscreen = not c.fullscreen
+            end
+            if c.maximized then
+                c.maximized = not c.maximized
+            end
+
+            dynamic_titlebar(c)
+        end
+    end
+)

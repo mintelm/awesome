@@ -1,25 +1,34 @@
-local auto_start = require('modules.auto_start')
+local awful = require('awful')
 local beautiful = require('beautiful')
 
-local apps = {}
+local defaults = { }
 
 local ext_path = '~/.config/awesome/configuration/ext/'
 
-apps.default = {
+defaults.mod_keys = {
+    mod_key = 'Mod4',
+    alt_key = 'Mod1',
+}
+
+defaults.layouts = {
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.floating,
+}
+
+defaults.tags = { '1', '2', '3', '4', '5', '6', '7', '8', '9' }
+
+defaults.apps = {
     terminal = 'alacritty',
     web_browser = 'google-chrome-stable',
     run_menu = 'rofi -modi drun -show drun -font "' .. beautiful.font_mono .. '" -show-icons \z
                -icone-theme "' .. beautiful.icon_theme .. '" -matching fuzzy -dpi 192 \z
-               -theme ' .. ext_path .. 'gruvbox.rasi'
+               -theme ' .. ext_path .. 'gruvbox.rasi',
 }
 
-apps.auto_start = {
+defaults.auto_start = {
     'nm-applet',
     'picom --config ' .. ext_path .. 'picom.conf',
 }
 
-for _, app in ipairs(apps.auto_start) do
-    auto_start.run_once(app)
-end
-
-return apps
+return defaults

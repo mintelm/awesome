@@ -6,8 +6,6 @@ local dpi = require('beautiful.xresources').apply_dpi
 local shapes = require('modules.shapes')
 local battery = require('modules.battery')
 
-local panel = {}
-
 local function rounded_widget(widget, top, bottom, left, right, bg)
     -- check if widget is a table
     if next(widget) == nil then
@@ -33,7 +31,7 @@ local function rounded_widget(widget, top, bottom, left, right, bg)
     }
 end
 
-function panel.top_panel(s)
+function top_panel(s)
     local top_panel = awful.wibar({ position = 'top', screen = s, height = beautiful.top_panel_size })
     local textclock = wibox.widget.textclock()
     local layoutbox = awful.widget.layoutbox {
@@ -101,4 +99,9 @@ function panel.top_panel(s)
     return top_panel
 end
 
-return panel
+screen.connect_signal(
+    'request::desktop_decoration',
+    function(s)
+        s.top_panel = top_panel(s)
+    end
+)

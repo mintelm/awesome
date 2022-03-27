@@ -1,9 +1,9 @@
 local awful = require('awful')
 local ruled = require('ruled')
-local gears = require('gears')
-local beautiful = require('beautiful')
 
-local shapes = require('modules.shapes')
+require('modules.savefloats')
+require('modules.better_resize')
+require('modules.titlebar')
 
 ruled.client.connect_signal(
     'request::rules',
