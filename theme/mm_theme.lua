@@ -85,7 +85,7 @@ theme.layout_fullscreen = def_theme_path .. 'default/layouts/fullscreenw.png'
 theme.layout_tilebottom = def_theme_path .. 'default/layouts/tilebottomw.png'
 theme.layout_tile = def_theme_path .. 'default/layouts/tilew.png'
 
-theme.window_switcher_widget_bg = theme.bg_normal
+theme.window_switcher_widget_bg = theme.bg_normal .. 'dd'
 theme.window_switcher_widget_border_width = theme.border_width
 theme.window_switcher_widget_border_radius = theme.border_radius
 theme.window_switcher_widget_border_color = theme.border_normal
