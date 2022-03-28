@@ -4,7 +4,7 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful.xresources').apply_dpi
 
 local shapes = require('modules.shapes')
-local battery = require('modules.top_panel.widgets.battery')
+local widgets = require('modules.top_panel.widgets')
 
 local function rounded_widget(widget, top, bottom, left, right, bg)
     -- check if widget is a table
@@ -125,7 +125,7 @@ local function top_panel(s)
                     layout = awful.widget.only_on_screen,
                     screen = 'primary'
                 },
-                rounded_widget(battery, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
+                rounded_widget(widgets.battery, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 rounded_widget(layoutbox, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 layout = wibox.layout.fixed.horizontal,
             },
