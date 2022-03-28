@@ -33,7 +33,10 @@ end
 
 local function top_panel(s)
     local panel = awful.wibar({ position = 'top', screen = s, height = beautiful.top_panel_size })
-    local textclock = wibox.widget.textclock()
+    local textclock = wibox.widget.textclock('%H:%M')
+    textclock:connect_signal('mouse::enter', function() textclock.format = '%a %b %d, %H:%M' end)
+    textclock:connect_signal('mouse::leave', function() textclock.format = '%H:%M' end)
+    awful.widget.calendar_popup.month():attach(textclock, 'tr', { on_hover = false })
     local layoutbox = awful.widget.layoutbox {
         screen = s,
         shape = shapes.rrect(beautiful.border_radius),
@@ -108,25 +111,24 @@ local function top_panel(s)
         {
             -- left
             {
+                rounded_widget(taglist, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 layout = wibox.layout.align.horizontal,
-                rounded_widget(taglist, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0)
             },
             -- middle
             {
                 tasklist,
-                --rounded_widget(tasklist(s), dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 layout = wibox.layout.align.horizontal,
-                --textclock,
             },
             -- right
             {
                 {
+                    screen = 'primary',
                     rounded_widget(wibox.widget.systray(), dpi(1), dpi(1), dpi(8), dpi(8), beautiful.xcolor0),
                     layout = awful.widget.only_on_screen,
-                    screen = 'primary'
                 },
                 rounded_widget(widgets.battery, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 rounded_widget(layoutbox, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
+                rounded_widget(textclock, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 layout = wibox.layout.fixed.horizontal,
             },
             layout = wibox.layout.align.horizontal,
@@ -136,7 +138,7 @@ local function top_panel(s)
         {
             widget = wibox.container.background,
             bg = beautiful.xcolor0,
-            forced_height = beautiful.border_width
+            forced_height = beautiful.border_width,
         },
         layout = wibox.layout.align.vertical,
     }
