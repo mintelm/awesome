@@ -42,8 +42,8 @@ end
 
 local function create_title_button(c, color_focus, color_unfocus, shape)
     local title_button = wibox.widget {
-        forced_width = dpi(12),
-        forced_height = dpi(12),
+        forced_width = dpi(14),
+        forced_height = dpi(14),
         bg = color_focus,
         shape = shape,
         widget = wibox.container.background
@@ -95,53 +95,45 @@ local function border(c)
 end
 
 local function top(c)
-    local powerline_depth = math.floor(0.42 * beautiful.titlebar_icon_size)
     local icon_size = beautiful.titlebar_icon_size
+    --[[
+    local powerline_depth = math.floor(0.42 * beautiful.titlebar_icon_size)
 
     local powerline = function(depth)
         return shapes.powerline(icon_size, icon_size, depth)
     end
+    --]]
 
-    local hexagon = function()
-        return shapes.hexagon(icon_size, icon_size)
-    end
-
-    local square = function()
-        return function(cr)
-            gears.shape.partially_rounded_rect(cr, icon_size, icon_size, tl, tr, br, bl, 0)
-        end
-    end
-
-    local ontop = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, hexagon())
+    local ontop = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, shapes.circle(icon_size))
     ontop:connect_signal('button::release', function() c.ontop = not c.ontop end)
     client.connect_signal(
         'property::ontop',
         function()
             if c.ontop then
-                ontop.shape = shapes.circle(icon_size, icon_size)
+                ontop.shape = shapes.hexagon(icon_size, icon_size)
             else
-                ontop.shape = hexagon()
+                ontop.shape = shapes.circle(icon_size)
             end
         end
     )
 
-    -- local min = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, powerline(powerline_depth))
-    -- min:connect_signal('button::release', function() c.minimized = true end)
+    local min = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, shapes.circle(icon_size))
+    min:connect_signal('button::release', function() c.minimized = true end)
 
-    local max = create_title_button(c, beautiful.xcolor6, beautiful.xcolor8, powerline(powerline_depth))
+    local max = create_title_button(c, beautiful.xcolor6, beautiful.xcolor8, shapes.circle(icon_size))
     max:connect_signal('button::release', function() c.maximized = not c.maximized end)
     client.connect_signal(
         'property::maximized',
         function()
             if c.maximized then
-                max.shape = square()
+                max.shape = shapes.square(icon_size)
             else
-                max.shape = powerline(powerline_depth)
+                max.shape = shapes.circle(icon_size)
             end
         end
     )
 
-    local close = create_title_button(c, beautiful.xcolor1, beautiful.xcolor8, powerline(powerline_depth))
+    local close = create_title_button(c, beautiful.xcolor1, beautiful.xcolor8, shapes.circle(icon_size))
     close:connect_signal('button::release', function() c : kill() end)
 
     local titlebar = wibox.widget {
@@ -165,7 +157,7 @@ local function top(c)
         { -- Right
             {
                 ontop,
-                -- min,
+                min,
                 max,
                 close,
                 spacing = dpi(0),

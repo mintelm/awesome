@@ -59,7 +59,7 @@ theme.fullscreen_hide_border = true
 theme.maximized_hide_border = true
 
 theme.titlebar_size = dpi(22)
-theme.titlebar_icon_size = dpi(8)
+theme.titlebar_icon_size = dpi(9)
 theme.titlebar_bg_focus = theme.bg_normal
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_fg_normal = theme.inactive

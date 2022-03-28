@@ -26,9 +26,15 @@ function shapes.hexagon(width, height)
     end
 end
 
-function shapes.circle(width, height)
+function shapes.circle(size)
     return function(cr)
-        gears.shape.rounded_bar(cr, width, height)
+        gears.shape.rounded_bar(cr, size, size)
+    end
+end
+
+function shapes.square(size)
+    return function(cr)
+        gears.shape.partially_rounded_rect(cr, size, size, _, _, _, _, 0)
     end
 end
 
