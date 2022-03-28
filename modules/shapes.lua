@@ -14,27 +14,27 @@ function shapes.prrect(radius, tl, tr, br, bl)
     end
 end
 
-function shapes.powerline(width, height, depth)
-    return function(cr)
+function shapes.powerline(depth)
+    return function(cr, width, height)
         gears.shape.powerline(cr, width, height, depth)
     end
 end
 
-function shapes.hexagon(width, height)
-    return function(cr)
+function shapes.hexagon()
+    return function(cr, width, height)
         gears.shape.hexagon(cr, width, height)
     end
 end
 
-function shapes.circle(size)
-    return function(cr)
-        gears.shape.rounded_bar(cr, size, size)
+function shapes.circle()
+    return function(cr, width, height)
+        gears.shape.rounded_bar(cr, width, height)
     end
 end
 
-function shapes.square(size)
-    return function(cr)
-        gears.shape.partially_rounded_rect(cr, size, size, _, _, _, _, 0)
+function shapes.square()
+    return function(cr, width, height, _, _, _, _)
+        gears.shape.partially_rounded_rect(cr, width, height, _, _, _, _, 0)
     end
 end
 

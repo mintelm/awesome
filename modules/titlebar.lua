@@ -2,7 +2,7 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local gears = require('gears')
 local wibox = require('wibox')
-local dpi = require("beautiful.xresources").apply_dpi
+local dpi = require('beautiful.xresources').apply_dpi
 
 local shapes = require('modules.shapes')
 
@@ -23,7 +23,7 @@ local function create_click_events(c)
 
     local buttons = gears.table.join(
         awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
+            c:emit_signal('request::activate', 'titlebar', {raise = true})
             if double_click_event_handler() then
                 c.maximized = not c.maximized
                 c:raise()
@@ -32,7 +32,7 @@ local function create_click_events(c)
             end
         end),
         awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
+            c:emit_signal('request::activate', 'titlebar', {raise = true})
             awful.mouse.client.resize(c)
         end)
     )
@@ -42,8 +42,7 @@ end
 
 local function create_title_button(c, color_focus, color_unfocus, shape)
     local title_button = wibox.widget {
-        forced_width = dpi(14),
-        forced_height = dpi(14),
+        forced_width = dpi(10),
         bg = color_focus,
         shape = shape,
         widget = wibox.container.background
@@ -95,7 +94,6 @@ local function border(c)
 end
 
 local function top(c)
-    local icon_size = beautiful.titlebar_icon_size
     --[[
     local powerline_depth = math.floor(0.42 * beautiful.titlebar_icon_size)
 
@@ -104,44 +102,42 @@ local function top(c)
     end
     --]]
 
-    local ontop = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, shapes.circle(icon_size))
+    local ontop = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, shapes.circle())
     ontop:connect_signal('button::release', function() c.ontop = not c.ontop end)
     client.connect_signal(
         'property::ontop',
-        function()
-            if c.ontop then
-                ontop.shape = shapes.hexagon(icon_size, icon_size)
+        function(c1)
+            if c1.ontop then
+                ontop.shape = shapes.hexagon()
             else
-                ontop.shape = shapes.circle(icon_size)
+                ontop.shape = shapes.circle()
             end
         end
     )
 
-    local min = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, shapes.circle(icon_size))
+    local min = create_title_button(c, beautiful.xcolor3, beautiful.xcolor8, shapes.circle())
     min:connect_signal('button::release', function() c.minimized = true end)
 
-    local max = create_title_button(c, beautiful.xcolor6, beautiful.xcolor8, shapes.circle(icon_size))
+    local max = create_title_button(c, beautiful.xcolor6, beautiful.xcolor8, shapes.circle())
     max:connect_signal('button::release', function() c.maximized = not c.maximized end)
     client.connect_signal(
         'property::maximized',
-        function()
-            if c.maximized then
-                max.shape = shapes.square(icon_size)
+        function(c1)
+            if c1.maximized then
+                max.shape = shapes.square()
             else
-                max.shape = shapes.circle(icon_size)
+                max.shape = shapes.circle()
             end
         end
     )
 
-    local close = create_title_button(c, beautiful.xcolor1, beautiful.xcolor8, shapes.circle(icon_size))
+    local close = create_title_button(c, beautiful.xcolor1, beautiful.xcolor8, shapes.circle())
     close:connect_signal('button::release', function() c : kill() end)
 
     local titlebar = wibox.widget {
         { -- Left
             awful.widget.clienticon(c),
-            top = dpi(2),
-            bottom = dpi(2),
-            left = dpi(2),
+            margins = dpi(2),
             buttons = create_click_events(c),
             widget = wibox.container.margin
         },
@@ -160,12 +156,10 @@ local function top(c)
                 min,
                 max,
                 close,
-                spacing = dpi(0),
+                spacing = dpi(4),
                 layout = wibox.layout.flex.horizontal
             },
-            top = dpi(7),
-            left = dpi(5),
-            right = dpi(2),
+            margins = dpi(5),
             widget = wibox.container.margin
         },
         layout = wibox.layout.align.horizontal
