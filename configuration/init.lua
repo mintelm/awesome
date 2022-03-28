@@ -4,10 +4,10 @@ local naughty = require('naughty')
 local gears = require('gears')
 local defaults = require(... .. '.defaults')
 
-require(... .. '.bling')
 require(... .. '.windows')
 require(... .. '.keybinds')
 require('modules.top_panel')
+require('modules.window_switcher').enable()
 
 local function set_default_layout(s)
     local layout = defaults.layouts[1]
