@@ -4,7 +4,7 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful.xresources').apply_dpi
 
 local shapes = require('modules.shapes')
-local widgets = require('modules.top_panel.widgets')
+local widgets = require(... .. '.widgets')
 
 local function rounded_widget(widget, top, bottom, left, right, bg)
     -- check if widget is a table
