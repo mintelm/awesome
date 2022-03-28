@@ -78,6 +78,12 @@ theme.taglist_bg_occupied = theme.xcolor0
 theme.taglist_fg_focus = theme.bg_focus
 theme.taglist_fg_occupied = theme.fg_normal
 
+theme.tasklist_bg_normal = theme.xcolor0
+theme.tasklist_bg_focus = theme.xcolor0
+theme.tasklist_bg_minimize = theme.bg_normal
+theme.tasklist_shape_border_width_focus = theme.border_width
+theme.tasklist_shape_border_color_focus = theme.border_focus
+
 theme.systray_icon_spacing = dpi(5)
 
 theme.layout_floating  = def_theme_path .. 'default/layouts/floatingw.png'

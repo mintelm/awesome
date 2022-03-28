@@ -6,27 +6,34 @@ local dpi = require('beautiful.xresources').apply_dpi
 local shapes = require('modules.shapes')
 local widgets = require(... .. '.widgets')
 
-local function rounded_widget(widget, top, bottom, left, right, bg)
-    -- check if widget is a table
-    if next(widget) == nil then
+local function rounded_widget(w)
+    if w == nil or next(w) == nil then
         return nil
     end
 
     return {
         {
-            {
-                widget,
-                top = top,
-                bottom = bottom,
-                left = left,
-                right = right,
-                widget = wibox.container.margin
-            },
-            bg = bg,
+            w,
+            bg = beautiful.xcolor0,
             shape = shapes.rrect(beautiful.border_radius + 2),
             widget = wibox.container.background
         },
         margins = dpi(3),
+        widget = wibox.container.margin
+    }
+end
+
+local function wrap_widget(w)
+    if w == nil or next(w) == nil then
+        return nil
+    end
+
+    return {
+        w,
+        top = dpi(4),
+        left = dpi(7),
+        bottom = dpi(4),
+        right = dpi(7),
         widget = wibox.container.margin
     }
 end
@@ -71,37 +78,41 @@ local function top_panel(s)
                     if c == client.focus then
                         c.minimized = true
                     else
-                        c:emit_signal('request::activate', 'tasklist', {raise = true})
+                        c:emit_signal('request::activate', 'tasklist', { raise = true })
                     end
                 end
             ),
-            awful.button( { }, 3, function() awful.menu.client_list({ theme = { width = 250 } }) end),
             awful.button( { }, 4, function () awful.client.focus.byidx(1) end),
             awful.button( { }, 5, function () awful.client.focus.byidx(-1) end)
         },
-        widget_template = rounded_widget(
+        style = {
+            shape = shapes.rrect(beautiful.border_radius),
+        },
+        layout = { spacing = dpi(8), layout = wibox.layout.fixed.horizontal },
+        widget_template = {
             {
-                nil,
-                {
-                    id = 'clienticon',
-                    widget = awful.widget.clienticon,
-                    forced_width = dpi(16),
-                    forced_height = dpi(16),
-                },
-                {
-                    wibox.widget.base.make_widget(),
-                    id = 'background_role',
-                    widget = wibox.container.background,
-                    forced_height = dpi(1),
-                    forced_width = dpi(16),
-                },
-                create_callback = function(self, c, _, _)
-                    self:get_children_by_id('clienticon')[1].client = c
-                end,
-                layout = wibox.layout.align.vertical,
+                awful.widget.clienticon,
+                top = dpi(1),
+                left = dpi(7),
+                bottom = dpi(1),
+                right = dpi(7),
+                layout = wibox.container.margin,
             },
-            dpi(1), dpi(1), dpi(5), dpi(5), beautiful.xcolor0
-        )
+            id = 'background_role',
+            widget = wibox.container.background,
+            create_callback = function(self, c, index, clients)
+                self:connect_signal('mouse::enter', function()
+                    self.bg = beautiful.tasklist_bg_normal .. '400'
+                end)
+                self:connect_signal('mouse::leave', function()
+                    if c.minimized then
+                        self.bg = beautiful.tasklist_bg_minimize
+                    else
+                        self.bg = beautiful.tasklist_bg_normal
+                    end
+                end)
+            end
+        },
     }
 
     panel:setup {
@@ -111,24 +122,24 @@ local function top_panel(s)
         {
             -- left
             {
-                rounded_widget(taglist, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
+                rounded_widget(wrap_widget(taglist)),
                 layout = wibox.layout.align.horizontal,
             },
             -- middle
             {
-                tasklist,
+                wrap_widget(tasklist),
                 layout = wibox.layout.align.horizontal,
             },
             -- right
             {
                 {
                     screen = 'primary',
-                    rounded_widget(wibox.widget.systray(), dpi(1), dpi(1), dpi(8), dpi(8), beautiful.xcolor0),
+                    rounded_widget(wrap_widget(wibox.widget.systray())),
                     layout = awful.widget.only_on_screen,
                 },
-                rounded_widget(widgets.battery, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
-                rounded_widget(layoutbox, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
-                rounded_widget(textclock, dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
+                rounded_widget(wrap_widget(widgets.battery)),
+                rounded_widget(wrap_widget(layoutbox)),
+                rounded_widget(wrap_widget(textclock)),
                 layout = wibox.layout.fixed.horizontal,
             },
             layout = wibox.layout.align.horizontal,
