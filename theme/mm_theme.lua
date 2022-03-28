@@ -71,7 +71,7 @@ theme.tooltip_shape = shapes.rrect(theme.border_radius)
 theme.tooltip_border_width = theme.border_width
 theme.tooltip_border_color = theme.border_focus
 
-theme.top_panel_size = dpi(26)
+theme.top_panel_size = dpi(28)
 
 theme.taglist_bg_focus = theme.xcolor0
 theme.taglist_bg_occupied = theme.xcolor0

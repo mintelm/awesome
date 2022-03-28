@@ -57,6 +57,49 @@ local function top_panel(s)
             awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end),
         }
     }
+    local tasklist = awful.widget.tasklist {
+        screen = s,
+        filter = awful.widget.tasklist.filter.currenttags,
+        buttons = {
+            awful.button(
+                { },
+                1,
+                function (c)
+                    if c == client.focus then
+                        c.minimized = true
+                    else
+                        c:emit_signal('request::activate', 'tasklist', {raise = true})
+                    end
+                end
+            ),
+            awful.button( { }, 3, function() awful.menu.client_list({ theme = { width = 250 } }) end),
+            awful.button( { }, 4, function () awful.client.focus.byidx(1) end),
+            awful.button( { }, 5, function () awful.client.focus.byidx(-1) end)
+        },
+        widget_template = rounded_widget(
+            {
+                nil,
+                {
+                    id = 'clienticon',
+                    widget = awful.widget.clienticon,
+                    forced_width = dpi(16),
+                    forced_height = dpi(16),
+                },
+                {
+                    wibox.widget.base.make_widget(),
+                    id = 'background_role',
+                    widget = wibox.container.background,
+                    forced_height = dpi(1),
+                    forced_width = dpi(16),
+                },
+                create_callback = function(self, c, _, _)
+                    self:get_children_by_id('clienticon')[1].client = c
+                end,
+                layout = wibox.layout.align.vertical,
+            },
+            dpi(1), dpi(1), dpi(5), dpi(5), beautiful.xcolor0
+        )
+    }
 
     panel:setup {
         -- top (empty)
@@ -70,8 +113,10 @@ local function top_panel(s)
             },
             -- middle
             {
+                tasklist,
+                --rounded_widget(tasklist(s), dpi(4), dpi(4), dpi(7), dpi(7), beautiful.xcolor0),
                 layout = wibox.layout.align.horizontal,
-                textclock,
+                --textclock,
             },
             -- right
             {
