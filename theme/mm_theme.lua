@@ -105,6 +105,18 @@ theme.window_switcher_name_focus_color = theme.border_focus
 theme.window_switcher_icon_valign = 'center'
 theme.window_switcher_icon_width = dpi(30)
 
+theme.calendar_normal_shape = shapes.rrect(theme.border_radius)
+theme.calendar_normal_border_color = theme.border_normal
+theme.calendar_focus_shape = shapes.rrect(theme.border_radius)
+theme.calendar_focus_border_color = theme.border_focus
+theme.calendar_focus_bg_color = theme.xbg
+theme.calendar_header_shape = shapes.rrect(theme.border_radius)
+theme.calendar_header_border_color = theme.border_normal
+theme.calendar_month_shape = shapes.rrect(theme.border_radius)
+theme.calendar_month_border_color = theme.border_normal
+theme.calendar_weekday_shape = shapes.rrect(theme.border_radius)
+theme.calendar_weekday_border_color = theme.border_normal
+
 -- Notifications
 theme.notification_shape = shapes.rrect(theme.border_radius)
 theme.notification_max_width = dpi(350)
