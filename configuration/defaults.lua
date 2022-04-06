@@ -34,6 +34,7 @@ defaults.apps = {
 defaults.auto_start = {
     'nm-applet',
     'picom --config ' .. ext_path .. 'picom.conf',
+    'volctl',
 }
 
 return defaults
