@@ -107,7 +107,7 @@ local function top(c)
     client.connect_signal(
         'property::ontop',
         function(c1)
-            if c1.ontop then
+            if c1 == c and c1.ontop then
                 ontop.shape = shapes.hexagon()
             else
                 ontop.shape = shapes.circle()
@@ -123,7 +123,7 @@ local function top(c)
     client.connect_signal(
         'property::maximized',
         function(c1)
-            if c1.maximized then
+            if c1 == c and c1.maximized then
                 max.shape = shapes.square()
             else
                 max.shape = shapes.circle()
