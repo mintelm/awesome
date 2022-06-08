@@ -257,6 +257,22 @@ client.connect_signal(
     end
 )
 
+client.connect_signal(
+    'property::fullscreen',
+    function(c)
+        dynamic_titlebar(c)
+        c:raise()
+    end
+)
+
+client.connect_signal(
+    'property::maximized',
+    function(c)
+        dynamic_titlebar(c)
+        c:raise()
+    end
+)
+
 tag.connect_signal(
     'property::layout',
     function(t)
