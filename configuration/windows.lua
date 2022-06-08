@@ -1,7 +1,7 @@
 local awful = require('awful')
 local ruled = require('ruled')
 
-require('modules.savefloats')
+--require('modules.savefloats')
 require('modules.better_resize')
 require('modules.titlebar')
 
