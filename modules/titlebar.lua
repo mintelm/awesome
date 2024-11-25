@@ -227,7 +227,7 @@ local function dynamic_titlebar(c)
         local acc_size = beautiful.titlebar_size - beautiful.border_width
         c:relative_move(0, 0, 0, - acc_size)
         -- kitty titlebar 'folds' up while others 'fold' down ..
-        if c.class == 'kitty' then
+        if c.class == 'kitty' or c.class == 'Google-chrome' then
             c:relative_move(0, acc_size, 0, 0)
         end
         if c.class == 'Gnome-terminal' then
